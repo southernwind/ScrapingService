@@ -21,7 +21,7 @@ node {
     }
 
     stage('Restart ScrapingService'){
-      sh 'ssh home-server.localnet -t -l ${SSH_USER} -i ${SSH_KEY} sudo service scraping_service restart'
+      sh 'ssh home-server.localnet -t -l ${SSH_USER} -i ${SSH_KEY} sudo service scraping restart'
     }
   }
 
