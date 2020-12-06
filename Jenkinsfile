@@ -8,7 +8,7 @@ node {
   }
 
   stage('Build ScrapingService'){
-    dotnetBuild configuration: 'Release', project: 'ScrapingService.sln', runtime: 'linux-x64', sdk: '.NET5', unstableIfWarnings: true
+    dotnetBuild configuration: 'Release', project: 'ScrapingService.sln', sdk: '.NET5', unstableIfWarnings: true
   }
 
   withCredentials( \
@@ -17,7 +17,7 @@ node {
         keyFileVariable: 'SSH_KEY', \
         usernameVariable: 'SSH_USER')]) {
     stage('Deploy ScrapingService'){
-      sh 'scp -pr -i ${SSH_KEY} ./ScrapingService/bin/Release/net5/linux-x64/* ${SSH_USER}@home-server.localnet:/opt/scraping-service'
+      sh 'scp -pr -i ${SSH_KEY} ./ScrapingService/bin/Release/net5/* ${SSH_USER}@home-server.localnet:/opt/scraping-service'
     }
 
     stage('Restart ScrapingService'){
