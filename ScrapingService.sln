@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30709.64
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrapingService", "ScrapingService\ScrapingService.csproj", "{1BB38BC2-4277-44EE-9554-2AA201B6C9BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{922ADA7C-1947-457B-A8CD-777C84AA04C9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Jenkinsfile = Jenkinsfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{B1794444-43F1-4395-9680-8362EDBAE266}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Libraries\HomeDashboardBackend\Database\Database.csproj", "{0C8E972E-1792-45AE-8058-45CAB2CAD389}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScrapingLibrary", "Libraries\ScrapingLibrary\ScrapingLibrary\ScrapingLibrary.csproj", "{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BB38BC2-4277-44EE-9554-2AA201B6C9BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BB38BC2-4277-44EE-9554-2AA201B6C9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BB38BC2-4277-44EE-9554-2AA201B6C9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BB38BC2-4277-44EE-9554-2AA201B6C9BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C8E972E-1792-45AE-8058-45CAB2CAD389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C8E972E-1792-45AE-8058-45CAB2CAD389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C8E972E-1792-45AE-8058-45CAB2CAD389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C8E972E-1792-45AE-8058-45CAB2CAD389}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0C8E972E-1792-45AE-8058-45CAB2CAD389} = {B1794444-43F1-4395-9680-8362EDBAE266}
+		{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3} = {B1794444-43F1-4395-9680-8362EDBAE266}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97491044-004B-4E7C-AD08-527FB71F8C60}
+	EndGlobalSection
+EndGlobal
