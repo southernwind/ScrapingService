@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30709.64
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrapingService", "ScrapingService\ScrapingService.csproj", "{1BB38BC2-4277-44EE-9554-2AA201B6C9BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScrapingService", "ScrapingService\ScrapingService.csproj", "{1BB38BC2-4277-44EE-9554-2AA201B6C9BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{922ADA7C-1947-457B-A8CD-777C84AA04C9}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,6 +20,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Libraries\HomeDashboardBackend\Database\Database.csproj", "{0C8E972E-1792-45AE-8058-45CAB2CAD389}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScrapingLibrary", "Libraries\ScrapingLibrary\ScrapingLibrary\ScrapingLibrary.csproj", "{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScrapingService.Composition", "ScrapingService.Composition\ScrapingService.Composition.csproj", "{4D41EBCD-2622-4CE6-B2C1-928BC2A70232}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{7E1EF76F-F1FF-48CC-975E-061606135889}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyForwardViewer.DataBase", "Libraries\HomeDashboardBackend\Library\MoneyForwardViewer\MoneyForwardViewer.DataBase\MoneyForwardViewer.DataBase.csproj", "{3648C0CC-F2B0-49E9-9504-512F505C084D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,14 @@ Global
 		{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D41EBCD-2622-4CE6-B2C1-928BC2A70232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D41EBCD-2622-4CE6-B2C1-928BC2A70232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D41EBCD-2622-4CE6-B2C1-928BC2A70232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D41EBCD-2622-4CE6-B2C1-928BC2A70232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3648C0CC-F2B0-49E9-9504-512F505C084D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3648C0CC-F2B0-49E9-9504-512F505C084D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3648C0CC-F2B0-49E9-9504-512F505C084D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3648C0CC-F2B0-49E9-9504-512F505C084D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +60,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0C8E972E-1792-45AE-8058-45CAB2CAD389} = {B1794444-43F1-4395-9680-8362EDBAE266}
 		{41864E3C-B6FD-4DEA-A04F-ABEA7CF1C8C3} = {B1794444-43F1-4395-9680-8362EDBAE266}
+		{7E1EF76F-F1FF-48CC-975E-061606135889} = {B1794444-43F1-4395-9680-8362EDBAE266}
+		{3648C0CC-F2B0-49E9-9504-512F505C084D} = {7E1EF76F-F1FF-48CC-975E-061606135889}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97491044-004B-4E7C-AD08-527FB71F8C60}
