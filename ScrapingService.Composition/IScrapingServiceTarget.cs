@@ -6,6 +6,6 @@ namespace ScrapingService.Composition {
 		/// <summary>
 		/// スクレイピング実行
 		/// </summary>
-		public Task ExecuteAsync();
+		public Task ExecuteAsync(int investmentProductId, string key);
 	}
 }

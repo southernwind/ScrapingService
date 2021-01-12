@@ -8,9 +8,13 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql"/>
+    <PackageReference Include="System.Reactive"/>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Libraries\HomeDashboardBackend\Database\Database.csproj" />
+    <ProjectReference Include="..\Libraries\ScrapingLibrary\ScrapingLibrary\ScrapingLibrary.csproj" />
     <ProjectReference Include="..\ScrapingService.Composition\ScrapingService.Composition.csproj" />
   </ItemGroup>
 

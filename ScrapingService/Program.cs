@@ -1,9 +1,15 @@
 using System;
 using System.Threading.Tasks;
 
+using DataBase;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
+using ScrapingService.Composition;
+using ScrapingService.Targets;
 
 namespace ScrapingService {
 	public class Program {
@@ -19,6 +25,10 @@ namespace ScrapingService {
 					x.AddConsole();
 				})
 				.AddScoped<IConfiguration>(_ => configuration)
+				.AddScoped<IScrapingServiceTarget, SbiSecInvestmentTrust>()
+				.AddDbContext<HomeServerDbContext>(optionsBuilder => {
+					optionsBuilder.UseMySql(configuration.GetConnectionString("Database"));
+				})
 				.AddScoped<Cron>()
 				.BuildServiceProvider();
 
@@ -39,7 +49,6 @@ namespace ScrapingService {
 			// 永久ループ
 			while (!isCanceled) {
 				Console.ReadLine();
-				break;
 			}
 		}
 	}
