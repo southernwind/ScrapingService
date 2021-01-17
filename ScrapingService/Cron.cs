@@ -29,7 +29,7 @@ namespace ScrapingService {
 		public Task StartAsync() {
 			this._disposable.Add(
 				Observable
-					.Timer(TimeSpan.Zero, TimeSpan.FromDays(1))
+					.Timer(TimeSpan.Zero, TimeSpan.FromHours(1))
 					.Subscribe(async _ => {
 						var ipList = await this._dbContext.InvestmentProducts.Where(x => x.Enable).ToArrayAsync();
 						foreach (var ip in ipList) {
