@@ -10,17 +10,17 @@ using DataBase;
 using Microsoft.EntityFrameworkCore;
 
 namespace ScrapingService.Targets {
-	public class YahooFinance : YahooFinanceBase {
+	public class YahooFinanceCurrency : YahooFinanceBase {
 		private readonly HomeServerDbContext _dbContext;
 
-		public YahooFinance(HomeServerDbContext dbContext) {
+		public YahooFinanceCurrency(HomeServerDbContext dbContext) {
 			this._dbContext = dbContext;
 		}
 
-		public override async Task ExecuteAsync(int investmentProductId, string key) {
+		public override async Task ExecuteAsync(int id, string key) {
 			var csv = await this.GetRecords(key);
-			var records = csv.Select(cr => new InvestmentProductRate {
-				InvestmentProductId = investmentProductId,
+			var records = csv.Select(cr => new InvestmentCurrencyRate {
+				InvestmentCurrencyUnitId = id,
 				Date = cr.Date,
 				Value = cr.AdjClose
 			}).ToArray();
@@ -29,16 +29,16 @@ namespace ScrapingService.Targets {
 			}
 
 			var existing = (await this._dbContext
-					.InvestmentProductRates
+					.InvestmentCurrencyRates
 					.Where(x =>
-						x.InvestmentProductId == investmentProductId)
+						x.InvestmentCurrencyUnitId == id)
 					.ToArrayAsync())
 				.Where(x =>
 					x.Date <= records.Max(r => r.Date) &&
 					x.Date >= records.Min(r => r.Date))
 				.ToArray();
 
-			await this._dbContext.InvestmentProductRates.AddRangeAsync(records.Except(records.Where(x => existing.Any(e => e.InvestmentProductId == x.InvestmentProductId && e.Date == x.Date))));
+			await this._dbContext.InvestmentCurrencyRates.AddRangeAsync(records.Except(records.Where(x => existing.Any(e => e.InvestmentCurrencyUnitId == x.InvestmentCurrencyUnitId && e.Date == x.Date))));
 			await this._dbContext.SaveChangesAsync();
 		}
 	}

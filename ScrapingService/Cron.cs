@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using ScrapingService.Composition;
+using ScrapingService.Targets;
 
 namespace ScrapingService {
 	public class Cron : IDisposable {
@@ -32,14 +33,18 @@ namespace ScrapingService {
 					.Timer(TimeSpan.Zero, TimeSpan.FromHours(1))
 					.Subscribe(async _ => {
 						var ipList = await this._dbContext.InvestmentProducts.Where(x => x.Enable).ToArrayAsync();
-						foreach (var ip in ipList) {
+						var icuList = await this._dbContext.InvestmentCurrencyUnits.Where(x => x.Key != null).ToArrayAsync();
+						var list = ipList.Select(x => new { Id = x.InvestmentProductId, x.Key, x.Type }).ToList();
+						list.AddRange(icuList.Select(x => new { x.Id, x.Key, Type = typeof(YahooFinanceCurrency).FullName }).ToArray()!);
+						foreach (var item in list) {
 							try {
-								await this._targets.Single(x => x.GetType().FullName == ip.Type)
-									.ExecuteAsync(ip.InvestmentProductId, ip.Key);
+								await this._targets.Single(x => x.GetType().FullName == item.Type)
+									.ExecuteAsync(item.Id, item.Key);
 							} catch (Exception ex) {
 								this._logger.LogWarning(0, "取得エラー", ex);
 							}
 						}
+
 					}));
 			return Task.CompletedTask;
 
