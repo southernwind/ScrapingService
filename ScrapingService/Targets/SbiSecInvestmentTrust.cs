@@ -26,6 +26,7 @@ namespace ScrapingService.Targets {
 		}
 
 		public async Task ExecuteAsync(int investmentProductId, string key) {
+			await using var transaction = await this._dbContext.Database.BeginTransactionAsync();
 			var url = $"https://site0.sbisec.co.jp/marble/fund/history/standardprice.do?fund_sec_code={key}";
 			var htmlDoc = await this._httpClient.GetAsync(url).ToHtmlDocumentAsync();
 			var trs = htmlDoc.DocumentNode.QuerySelectorAll("#main .mgt10 .accTbl01 table tbody tr");
@@ -48,8 +49,10 @@ namespace ScrapingService.Targets {
 					x.Date >= records.Min(r => r.Date))
 				.ToArray();
 
-			await this._dbContext.InvestmentProductRates.AddRangeAsync(records.Except(records.Where(x => existing.Any(e => e.InvestmentProductId == x.InvestmentProductId && e.Date == x.Date))));
+			this._dbContext.InvestmentProductRates.RemoveRange(existing);
+			await this._dbContext.InvestmentProductRates.AddRangeAsync(records);
 			await this._dbContext.SaveChangesAsync();
+			await transaction.CommitAsync();
 		}
 
 		protected virtual void Dispose(bool disposing) {

@@ -18,6 +18,7 @@ namespace ScrapingService.Targets {
 		}
 
 		public override async Task ExecuteAsync(int id, string key) {
+			await using var transaction = await this._dbContext.Database.BeginTransactionAsync();
 			var csv = await this.GetRecords(key);
 			var records = csv.Where(x => x.AdjClose != null).Select(cr => new InvestmentCurrencyRate {
 				InvestmentCurrencyUnitId = id,
@@ -38,8 +39,10 @@ namespace ScrapingService.Targets {
 					x.Date >= records.Min(r => r.Date))
 				.ToArray();
 
-			await this._dbContext.InvestmentCurrencyRates.AddRangeAsync(records.Except(records.Where(x => existing.Any(e => e.InvestmentCurrencyUnitId == x.InvestmentCurrencyUnitId && e.Date == x.Date))));
+			this._dbContext.InvestmentCurrencyRates.RemoveRange(existing);
+			await this._dbContext.InvestmentCurrencyRates.AddRangeAsync(records);
 			await this._dbContext.SaveChangesAsync();
+			await transaction.CommitAsync();
 		}
 	}
 }
