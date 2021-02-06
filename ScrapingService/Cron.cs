@@ -41,7 +41,7 @@ namespace ScrapingService {
 								await this._targets.Single(x => x.GetType().FullName == item.Type)
 									.ExecuteAsync(item.Id, item.Key);
 							} catch (Exception ex) {
-								this._logger.LogWarning(0, "取得エラー", ex);
+								this._logger.LogWarning(0, ex, $"取得エラー ID:[{item.Id}]");
 							}
 						}
 
