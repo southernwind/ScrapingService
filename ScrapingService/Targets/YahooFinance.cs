@@ -19,10 +19,10 @@ namespace ScrapingService.Targets {
 
 		public override async Task ExecuteAsync(int investmentProductId, string key) {
 			var csv = await this.GetRecords(key);
-			var records = csv.Select(cr => new InvestmentProductRate {
+			var records = csv.Where(x => x.AdjClose != null).Select(cr => new InvestmentProductRate {
 				InvestmentProductId = investmentProductId,
 				Date = cr.Date,
-				Value = cr.AdjClose
+				Value = cr.AdjClose ?? 0
 			}).ToArray();
 			if (!records.Any()) {
 				throw new Exception("取得件数0件");

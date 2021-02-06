@@ -42,28 +42,28 @@ namespace ScrapingService.Targets {
 			get;
 			set;
 		}
-		public double Open {
+		public double? Open {
 			get;
 			set;
 		}
-		public double High {
+		public double? High {
 			get;
 			set;
 		}
-		public double Low {
+		public double? Low {
 			get;
 			set;
 		}
-		public double Close {
+		public double? Close {
 			get;
 			set;
 		}
 		[Name("Adj Close")]
-		public double AdjClose {
+		public double? AdjClose {
 			get;
 			set;
 		}
-		public double Volume {
+		public double? Volume {
 			get;
 			set;
 		}
