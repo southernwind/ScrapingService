@@ -27,6 +27,7 @@ namespace ScrapingService.Targets {
 
 		public async Task ExecuteAsync(int investmentProductId, string key) {
 			await using var transaction = await this._dbContext.Database.BeginTransactionAsync();
+			this._dbContext.Database.ExecuteSqlRaw("SET sql_mode=''");
 			var url = $"https://site0.sbisec.co.jp/marble/fund/history/standardprice.do?fund_sec_code={key}";
 			var htmlDoc = await this._httpClient.GetAsync(url).ToHtmlDocumentAsync();
 			var trs = htmlDoc.DocumentNode.QuerySelectorAll("#main .mgt10 .accTbl01 table tbody tr");

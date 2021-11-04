@@ -29,7 +29,7 @@ namespace ScrapingService {
 				.AddScoped<IScrapingServiceTarget, YahooFinance>()
 				.AddScoped<IScrapingServiceTarget, YahooFinanceCurrency>()
 				.AddDbContext<HomeServerDbContext>(optionsBuilder => {
-					optionsBuilder.UseMySql(configuration.GetConnectionString("Database"));
+					optionsBuilder.UseMySql(configuration.GetConnectionString("Database"),ServerVersion.AutoDetect(configuration.GetConnectionString("Database")));
 				})
 				.AddScoped<Cron>()
 				.BuildServiceProvider();

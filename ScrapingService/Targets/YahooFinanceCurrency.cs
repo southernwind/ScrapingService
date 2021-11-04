@@ -19,6 +19,7 @@ namespace ScrapingService.Targets {
 
 		public override async Task ExecuteAsync(int id, string key) {
 			await using var transaction = await this._dbContext.Database.BeginTransactionAsync();
+			this._dbContext.Database.ExecuteSqlRaw("SET sql_mode=''");
 			var csv = await this.GetRecords(key);
 			var records = csv.Where(x => x.AdjClose != null).Select(cr => new InvestmentCurrencyRate {
 				InvestmentCurrencyUnitId = id,
