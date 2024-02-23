@@ -27,6 +27,7 @@ namespace ScrapingService {
 				.AddScoped<IConfiguration>(_ => configuration)
 				.AddScoped<IScrapingServiceTarget, SbiSecInvestmentTrust>()
 				.AddScoped<IScrapingServiceTarget, YahooFinance>()
+				.AddScoped<IScrapingServiceTarget, Minkabu>()
 				.AddScoped<IScrapingServiceTarget, YahooFinanceCurrency>()
 				.AddDbContext<HomeServerDbContext>(optionsBuilder => {
 					optionsBuilder.UseMySql(configuration.GetConnectionString("Database"),ServerVersion.AutoDetect(configuration.GetConnectionString("Database")));
